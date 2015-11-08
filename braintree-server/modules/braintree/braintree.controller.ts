@@ -1,8 +1,6 @@
-/// <reference path="../../typings/tsd.d.ts" />
 import * as braintree from "braintree";
-import * as express from "express";
 
-export default function bt (router: express.Router) {
+module BraintreeController {
 	
 	var gateway = braintree.connect({
 		environment: braintree.Environment.Sandbox,
@@ -11,14 +9,14 @@ export default function bt (router: express.Router) {
 		privateKey: "6d330cab6b77ac7711e4252a5b6c483e"
 	});
 	
-	router.get("/client_token", function (req, res) {
+	export function generateClientToken (req, res) {
 		gateway.clientToken.generate({}, function (err, response) {
 			if (err) res.sendStatus(503);
 			else res.send(response.clientToken);
 		});
-	});
+	}
 	
-	router.post("/checkout", function (req, res) {
+	export function checkout (req, res) {
 		var nonce = req.body.payment_method_nonce;
 		
 		gateway.transaction.sale({
@@ -27,7 +25,8 @@ export default function bt (router: express.Router) {
 		}, function (err, result) {
 			
 		});
-	});
+	}
 	
-	return router;
 }
+
+export {BraintreeController as default};
