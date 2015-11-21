@@ -2,9 +2,9 @@
 
 module ListComponent {
 	console.log('list component');
-	
+
 	/* ngInject */
-	function ListDirective () {
+	var ListDirective: any = function ListDirective () {
 		return {
 			templateUrl: 'app/product/list/list.html',
 			/* ngInject */
@@ -14,7 +14,7 @@ module ListComponent {
 			controllerAs: 'list'
 		}
 	}
-	
+
 	angular.module('app.product')
 		.directive('list', ListDirective);
 	

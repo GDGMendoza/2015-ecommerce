@@ -8,7 +8,8 @@ module AppComponent {
     return {
       restrict: 'E',
       templateUrl: 'app/app.html',
-      controller: 'AppController'
+      controller: 'AppController',
+      controllerAs: 'app'
     }
   }
   
@@ -18,9 +19,16 @@ module AppComponent {
       {
         path: '/product',
         component: 'product',
-        as: 'Product'
+        name: 'Product'
       }
     ]);
+    
+    this.goTo = function (component) {
+      var instruction = $router.generate([component]);
+      $router.navigateByInstruction(instruction);
+    }
+    
+    if (!location.hash) this.goTo('/Product/');
   }
 	
 	angular.module('braintreeClient')

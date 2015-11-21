@@ -4,7 +4,7 @@ module ProductComponent {
     
   console.log('product component');
   
-  function ProductDirective() {
+  var ProductDirective: any = function () {
     return {
       templateUrl: 'app/product/product.html',
       /* ngInject */
@@ -19,12 +19,12 @@ module ProductComponent {
     {
       path: '/list',
       component: 'list',
-      as: 'List'
+      name: 'List'
     },
     {
       path: '/create',
       component: 'create',
-      as: 'Create'
+      name: 'Create'
     }
   ];
   
