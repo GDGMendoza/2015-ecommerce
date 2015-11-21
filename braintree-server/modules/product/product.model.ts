@@ -23,10 +23,6 @@ var Product = new Schema({
     default: '',
     trim: true
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
 	image: {
 		type: String,
 		default: '',

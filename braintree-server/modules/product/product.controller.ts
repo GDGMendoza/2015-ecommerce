@@ -12,7 +12,6 @@ module ProductController {
   */
   export function create (req, res) {
     var Product = new Product(req.body);
-    Product.user = req.user;
   
     Product.save(function (err) {
       if (err) {
@@ -73,7 +72,7 @@ module ProductController {
   * Listar productos
   */
   export function list (req, res) {
-    Product.find({}).sort('-created').populate('user', 'title').exec(function (err, Products) {
+    Product.find({}).sort('-created').exec(function (err, Products) {
       if (err) {
         return res.status(400).send({
           message: errors.getErrorMessage(err)
@@ -85,7 +84,7 @@ module ProductController {
   };
   
  /**
-  * Product middleware
+  * Middleware de productos
   */
   export function productByID (req, res, next, id) {
   
@@ -97,7 +96,7 @@ module ProductController {
       });
     }
   
-    Product.findById(id).populate('user', 'title').exec(function (err, Product) {
+    Product.findById(id).exec(function (err, Product) {
       if (err) {
         return next(err);
       } else if (!Product) {
