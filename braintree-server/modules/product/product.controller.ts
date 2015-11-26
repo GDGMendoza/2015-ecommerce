@@ -11,15 +11,15 @@ module ProductController {
   * Crear Producto
   */
   export function create (req, res) {
-    var Product = new Product(req.body);
+    var product = new Product(req.body);
   
-    Product.save(function (err) {
+    product.save(function (err) {
       if (err) {
         return res.status(400).send({
           message: errors.getErrorMessage(err)
         });
       } else {
-        res.json(Product);
+        res.json(product);
       }
     });
   };

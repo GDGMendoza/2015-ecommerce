@@ -41,7 +41,7 @@ function webpackWrapper(watch, test, callback) {
     }
   };
 
-  var sources = [ path.join(conf.paths.src, '/app/index.module.ts') ];
+  var sources = [ path.join(conf.paths.src, '/app/**/*.ts'), '!'+path.join(conf.paths.src, '/app/**/*.d.ts')];
   if (test) {
     sources.push(path.join(conf.paths.src, '/app/**/*.spec.ts'));
   }

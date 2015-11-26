@@ -1,1 +1,30 @@
-create lalalala
+<form name="createForm" ng-submit="Create.createProduct()">
+
+  <h3>Crear Producto</h3>
+
+  <div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="title" ng-model="Create.product.title">
+      <label class="mdl-textfield__label" for="title">Titulo</label>
+    </div>
+  </div>
+
+  <div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="content" ng-model="Create.product.content"></textarea>
+      <label class="mdl-textfield__label" for="content">Descripción</label>
+    </div>
+  </div>
+
+  <div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="number" id="dollarPrice" ng-model="Create.product.dollarPrice">
+      <label class="mdl-textfield__label" for="dollarPrice">Precio en Dólares</label>
+    </div>
+  </div>
+  
+  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary">
+    Crear
+  </button>
+
+</form>

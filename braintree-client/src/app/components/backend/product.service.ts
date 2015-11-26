@@ -1,39 +1,35 @@
-export interface IProduct {
-	id?: number;
-	created: string;
-	title: string;
-	content: string;
-	image: string;
-	dollarPrice: string;
-}
+/// <reference path="../../app.d.ts"/>
 
-export class ProductService {
-	
-	api = '/product';
-	
-	/* @ngInject */
-	constructor (public $http: ng.IHttpService) {
-		
+'use strict';
+
+(function () {
+
+	/* ngInject */
+	function ProductService ($http: ng.IHttpService): app.IProductService {
+
+		var api = '/api/product';
+
+		return {
+			addProduct (product) {
+				return $http.post(api, product);
+			},
+			listProducts () {
+				return $http.get(api);
+			},
+			getProduct (id) {
+				return $http.get(`${api}/${id}`);
+			},
+			updateProduct (id, product) {
+				return $http.put(`${api}/${id}`, product);
+			},
+			removeProduct (id) {
+				return $http.delete(`${api}/${id}`);
+			}
+		};
+
 	}
-	
-	addProduct (product: IProduct): ng.IPromise<IProduct> {
-		return this.$http.post(this.api, product);
-	}
-	
-	listProducts (): ng.IPromise<[IProduct]> {
-		return this.$http.get(this.api);
-	}
-	
-	getProduct (id: number): ng.IPromise<IProduct> {
-		return this.$http.get(`${this.api}/${id}`);
-	}
-	
-	updateProduct (id: number, product: IProduct): ng.IPromise<IProduct> {
-		return this.$http.put(`${this.api}/${id}`, product);
-	}
-	
-	removeProduct (id: number): ng.IPromise<any> {
-		return this.$http.delete(`${this.api}/${id}`);
-	}
-	
-}
+
+	angular.module('ProductService', [])
+		.factory('ProductService', ProductService);
+
+})();

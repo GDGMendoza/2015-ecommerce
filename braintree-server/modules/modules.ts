@@ -22,11 +22,16 @@ export default function modules (app: express.Express) {
 		next();
 	});
 	
+	var router = express.Router();
+	
 	// activo las rutas
-	app.use('/braintree', braintreeRoutes());
-	app.use('/product', productRoutes());
-	app.use('/sale', saleRoutes());
-	app.use('/user', userRoutes());
+	router.use('/braintree', braintreeRoutes());
+	router.use('/product', productRoutes());
+	router.use('/sale', saleRoutes());
+	router.use('/user', userRoutes());
+	
+	// todas los servicios van a estar bajo /api
+	app.use('/api', router);
 	
 	app.use('*', function (req, res) {
 		res.sendStatus(404);

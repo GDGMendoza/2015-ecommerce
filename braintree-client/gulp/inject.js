@@ -6,6 +6,8 @@ var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')();
 
+var angularFilesort = require('gulp-angular-filesort');
+
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
@@ -16,8 +18,9 @@ gulp.task('inject', ['scripts', 'styles'], function () {
   ], { read: false });
 
   var injectScripts = gulp.src([
-    path.join(conf.paths.tmp, '/serve/app/**/*.module.js')
-  ], { read: false });
+    path.join(conf.paths.tmp, '/serve/app/**/*.js')
+  ], { read: true })
+  .pipe(angularFilesort());
 
   var injectOptions = {
     ignorePath: [conf.paths.src, path.join(conf.paths.tmp, '/serve')],

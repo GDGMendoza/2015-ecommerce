@@ -1,23 +1,36 @@
+/// <reference path="../../app.d.ts"/>
+
 'use strict';
 
-module ListComponent {
-	console.log('list component');
+(function () {
 
 	/* ngInject */
-	var ListDirective: any = function ListDirective () {
+	function ListeConfig ($routeProvider: ng.route.IRouteProvider) {
+		$routeProvider.when('/product/list', {
+			template: '<product-list></product-list>'
+		});
+	}
+
+	/* ngInject */
+	function ListDirective () {
 		return {
 			templateUrl: 'app/product/list/list.html',
 			/* ngInject */
-			controller: function ListController($router) {
-				this.text = 'Olaf';
+			controller: function ListController(ProductService: app.IProductService) {
+
+				var ctrl = this;
+
+				ProductService.listProducts().then(function (products) {
+					ctrl.products = products.data;
+				});
+
 			},
-			controllerAs: 'list'
-		}
+			controllerAs: 'List'
+		};
 	}
 
-	angular.module('app.product')
-		.directive('list', ListDirective);
-	
-}
+	angular.module('app.product.list', ['ngRoute', 'ProductService'])
+		.config(ListeConfig)
+		.directive('productList', ListDirective);
 
-export {ListComponent as default}
+})();
