@@ -42,7 +42,7 @@
 		};
 	}
 
-	angular.module('app.product.create', ['ngRoute', 'ProductService'])
+	angular.module('app.product.create', ['ngRoute', 'backend.product'])
 		.config(CreateConfig)
 		.directive('productCreate', CreateDirective);
 

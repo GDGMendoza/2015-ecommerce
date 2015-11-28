@@ -14,12 +14,12 @@
 					{{::product.content}}
 				</div>
 				<div class="mdl-card__actions mdl-card--border">
-					<a ng-href="#/product/item/{{product._id}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-						Ver
-					</a>
+					<code>$ {{::product.dollarPrice}} - Ventas: {{::product.salesCount}}</code>
 				</div>
 				<div class="mdl-card__menu">
-					<code>$ {{::product.dollarPrice}}</code>
+					<a class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-href="#/product/item/{{::product._id}}">
+						<i class="material-icons">add_shopping_cart</i>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -27,4 +27,3 @@
 	</div>
 	
 </div>
-

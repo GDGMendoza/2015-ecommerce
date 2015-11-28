@@ -25,14 +25,18 @@ var Product = new Schema({
   },
 	image: {
 		type: String,
-		default: '',
+		default: 'assets/images/default_product.png',
 		trim: true
 	},
 	dollarPrice: {
 		type: String,
 		trim: true,
 		required: 'Dollar price cannot be blank'
-	}
+	},
+  salesCount: {
+    type: Number,
+    default: 0
+  }
 });
 
 module ProductModel {

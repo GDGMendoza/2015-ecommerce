@@ -10,13 +10,13 @@ export default function productRouter () {
     .get(product.list)
     .post(product.create);
 
-  router.route('/:articleId')
+  router.route('/:productId')
     .get(product.read)
     .put(product.update)
     .delete(product.remove);
     
   // Terminar bindeando el middleware del producto
-  router.param('articleId', product.productByID);
+  router.param('productId', product.productByID);
 	
 	return router;
 }

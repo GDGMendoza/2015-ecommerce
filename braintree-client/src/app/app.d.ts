@@ -4,7 +4,25 @@ declare var componentHandler;
 declare var moment: moment.MomentStatic;
 
 declare module app {
-	
+
+	interface IBraintreePaymentDetails {
+    details: {
+      // target card
+      cardType?: string; // Visa, MasterCard, Discover, Amex, JCB
+      lastTwo?: string; // The last two digits of the supplied card
+      // target card END
+      // paypal
+      email?: string;
+      // paypal END
+    }
+    nonce: string;
+    type: string; // CreditCard | PayPalAccount
+  }
+
+	interface IBraintreeToken {
+		token: string;
+	}
+
 	interface IProduct {
 		id?: number;
 		created: string;
@@ -12,8 +30,14 @@ declare module app {
 		content: string;
 		image: string;
 		dollarPrice: string;
+		salesCount: number;
 	}
-	
+
+	interface IBraintreeService {
+		productCheckout(data: any, productId: string): ng.IHttpPromise<any>;
+		getClientToken(): ng.IHttpPromise<IBraintreeToken>;
+	}
+
 	interface IProductService {
 		addProduct (product: IProduct): ng.IHttpPromise<IProduct>;
 		listProducts (): ng.IHttpPromise<[IProduct]>;
@@ -21,5 +45,5 @@ declare module app {
 		updateProduct (id: number, product: IProduct): ng.IHttpPromise<IProduct>;
 		removeProduct (id: number): ng.IHttpPromise<any>;
 	}
-	
+
 }

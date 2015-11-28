@@ -1,0 +1,157 @@
+<form class="braintree" id="form-id" name="braintreeForm" ng-submit="Braintree.confirm();">
+	
+	<div class="mdl-typography--text-center" ng-style="{display: !Braintree.loaded ? '' : 'none'}">
+		<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+	</div>
+	
+	<div class="mdl-card" ng-style="{display: Braintree.loaded ? '' : 'none'}">
+		<div class="mdl-card__title mdl-color--primary">
+			<h4 class="mdl-card__title-text">
+				{{::descriptionOne}} <br>
+				{{::descriptionTwo}}
+			</h4>
+		</div>
+		<div class="mdl-card__supporting-text">
+			<div ng-style="{display: Braintree.isUsingPaypal() ? 'none' : 'block'}">
+				
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--4-col">
+						<label for="number-id">Número de Tarjeta:</label>
+					</div>
+					<div class="mdl-cell mdl-cell--8-col">
+						<div class="input" id="number-id"></div>
+					</div>
+					
+					<div class="mdl-cell mdl-cell--4-col">
+						<label for="expiration-date-id">Fecha de Expiración:</label>
+					</div>
+					<div class="mdl-cell mdl-cell--8-col">
+						<div class="input" id="expiration-date-id"></div>
+					</div>
+					
+					<div class="mdl-cell mdl-cell--4-col">
+						<label for="cvv-id">CVV:</label>
+					</div>
+					<div class="mdl-cell mdl-cell--8-col">
+						<div class="input" id="cvv-id"></div>
+					</div>
+					
+					<div class="mdl-cell mdl-cell--4-col">
+						<label for="postal-code-id">Código Postal:</label>
+					</div>
+					<div class="mdl-cell mdl-cell--8-col">
+						<div class="input" id="postal-code-id"></div>
+					</div>
+				</div>
+				
+				<div class="or-divisor">
+					<span class="or-letter"></span>
+				</div>
+				
+			</div>
+
+			<div class="mdl-typography--text-center">
+				
+				<span class="paypal-legend">Paga con PayPal</span> <div id="paypal-container-id" class="paypal-container"></div>
+				
+				<div class="payment-button-container">
+					<button type="submit" class="mdl-button mdl-js-button mdl-button--primary">
+						Efectuar Pago
+					</button>
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+</form>
+
+<style>
+	.braintree .mdl-card {
+		width: 100%;
+	}
+
+	.braintree .mdl-card__title-text {
+		margin: auto auto;
+    text-align: center;
+	}
+
+	.braintree .mdl-color--primary {
+		color: #ffffff;
+	}
+
+	.braintree .payment-details {
+		background-color: rgb(252, 248, 228);
+		color: rgb(210, 163, 86);
+		padding: 4px;
+		margin-bottom: 12px;
+	}
+
+	.braintree .price {
+		font-size: 20px;
+    font-weight: 600;
+	}
+
+	.braintree .margin-bottom {
+		margin-bottom: 10px;
+	}
+
+	.braintree label {
+		vertical-align: sub;
+	}
+
+	.braintree .or-divisor {
+		height: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(239, 239, 239);
+    text-align: center;
+	}
+	
+	.braintree .or-letter {
+    width: 30px;
+    height: 20px;
+    background-color: #ffffff;
+    display: block;
+    color: black;
+    margin: auto auto;
+    line-height: 2px;
+	}
+	
+	.braintree .or-letter:before {
+		content: 'O';
+	}
+	
+	.braintree .paypal-legend {
+		position: relative;
+    vertical-align: top;
+    line-height: 49px;
+		margin-right: 20px;
+	}
+	
+	.braintree .paypal-container {
+		display: inline-block;
+		min-width: 115px;
+	}
+	
+	.braintree .input {
+		width: 100%;
+		height: 34px;
+		padding: 6px 12px;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	}
+	
+	.braintree .payment-button-container {
+		margin-top: 20px;
+	}
+	
+</style>

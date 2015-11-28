@@ -1,4 +1,8 @@
 import * as braintree from "braintree";
+import * as mongoose from "mongoose";
+import errors from "../../core/errors.controller";
+
+var Sale = mongoose.model('Sale');
 
 module BraintreeController {
 	
@@ -12,17 +16,48 @@ module BraintreeController {
 	export function generateClientToken (req, res) {
 		gateway.clientToken.generate({}, function (err, response) {
 			if (err) res.sendStatus(503);
-			else res.send(response.clientToken);
+			else res.json({token: response.clientToken});
 		});
 	}
 	
 	export function checkout (req, res) {
-		var nonce = req.body.payment_method_nonce;
+		
+		var b = req.body;
+		
+		// recupero el nonce enviado por el cliente
+		var nonce = b.nonce;
+				
+		// asigno el producto a pagar obtenido por el middleware, en una variable
+		var product = req.Product;
 		
 		gateway.transaction.sale({
-			amount: '10.00',
+			amount: product.dollarPrice,
 			paymentMethodNonce: nonce,
 		}, function (err, result) {
+			if (err) {
+				return res.status(400).send({
+					message: 'Un problema ha ocurrido. Por favor, intente nuevamente.'
+				});
+			}
+			
+			console.log('Result', result);
+			
+			// aumento el contador de productos vendidos en uno
+			product.salesCount++;
+			product.save(function () {});
+			
+			var sale = new Sale({product: product._id});
+  
+			sale.save(function (err) {
+				if (err) {
+					return res.status(400).send({
+						message: errors.getErrorMessage(err)
+					});
+				} else {
+					// en caso de salir bien, le devolvemos algo al cliente
+					res.json(sale);
+				}
+			});
 			
 		});
 	}

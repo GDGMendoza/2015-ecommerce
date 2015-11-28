@@ -29,7 +29,7 @@
 
 	}
 
-	angular.module('ProductService', [])
+	angular.module('backend.product', [])
 		.factory('ProductService', ProductService);
 
 })();

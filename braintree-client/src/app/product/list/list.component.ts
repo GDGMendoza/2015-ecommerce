@@ -29,7 +29,7 @@
 		};
 	}
 
-	angular.module('app.product.list', ['ngRoute', 'ProductService'])
+	angular.module('app.product.list', ['ngRoute', 'backend.product'])
 		.config(ListeConfig)
 		.directive('productList', ListDirective);
 

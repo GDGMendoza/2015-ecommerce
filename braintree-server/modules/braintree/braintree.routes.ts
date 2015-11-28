@@ -1,14 +1,18 @@
 /// <reference path="../../typings/tsd.d.ts" />
 import * as express from "express";
 import braintree from "./braintree.controller";
+import product from "../product/product.controller";
 
 export default function braintreeRouter () {
 	
 	var router = express.Router();
 	
 	router
-		.get("/client_token", braintree.generateClientToken)
-		.post("/checkout", braintree.checkout);
+		.get("/", braintree.generateClientToken)
+		.post("/:productId", braintree.checkout);
+	
+  // Terminar bindeando el middleware del producto
+  router.param('productId', product.productByID);
 	
 	return router;
 }
