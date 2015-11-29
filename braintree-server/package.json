@@ -14,7 +14,9 @@
   "devDependencies": {},
   "scripts": {
     "transpile": "tsc --sourcemap --module commonjs server.ts",
+    "transpileWindows": "tsc.cmd --sourcemap --module commonjs server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "startWindows": "npm run transpileWindows && set PORT=4000 && node server.js",
     "start": "npm run transpile && PORT=4000 node server.js"
   },
   "author": "Cristian Rios <mcristianrios@gmail.com>",

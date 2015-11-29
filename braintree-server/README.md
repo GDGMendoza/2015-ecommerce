@@ -13,6 +13,13 @@ npm install // instala las dependencias de node
 npm start // ejecuta el servidor
 ```
 
+Ejecutar por terminal en win32:
+```js
+npm install -g tsc  // CLI de typescript
+npm install         // instala las dependencias de node
+npm startWindows    // ejecuta el servidor
+```
+
 ### Créditos
 Algunas ideas fueron tomadas de:
 * [MeanJS](https://github.com/meanjs/mean/)
