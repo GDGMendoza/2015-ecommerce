@@ -8,19 +8,9 @@ Asegurate de tener instaladas las siguientes dependencias en tu entorno de desar
 Ejecutar por terminal:
 
 ```js
-npm install -g tsc // CLI de typescript
+npm install -g tsd // Manejador de definiciones de typescript
 npm install        // instala las dependencias de node
-npm start          // ejecuta el servidor
+bower install      // instala las dependencias del front-end
+tsd install        // instala las definiciones establecidas en el tsd.json
+gulp serve         // ejecuta el preview front-end
 ```
-
-Ejecutar por terminal en win32:
-
-```js
-npm install -g tsc  // CLI de typescript
-npm install         // instala las dependencias de node
-npm startWindows    // ejecuta el servidor
-```
-
-### Créditos
-Algunas ideas fueron tomadas de:
-* [MeanJS](https://github.com/meanjs/mean/)
